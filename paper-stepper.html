@@ -564,10 +564,9 @@ Custom property | Description | Default
         // focus on last unsaved item
         if (!this.noFocusOnUnsave) {
           this.__lastIndex = index;
-          this.debounce('paper-setpper-unsave-focus', function(){
-            this._selectedIndex = this.__lastIndex;
-            this.__lastIndex = false;
-          }, 100)
+          this.debounce('paper-stepper-unsave-focus', function(){
+            this._set_selectedIndex(this.__lastIndex);
+          }, 100);
         }
       },
 
