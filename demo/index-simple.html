@@ -1,0 +1,108 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>paper-tags Demo</title>
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+  <link rel="import" href="../../paper-tabs/paper-tabs.html">
+  <link rel="import" href="../../iron-pages/iron-pages.html">
+  <link rel="import" href="../paper-stepper.html">
+
+  <style is="custom-style" include="demo-pages-shared-styles">
+     demo-snippet {
+      height: 400px;
+      display: block;
+     }
+  </style>
+</head>
+
+<body>
+ <!--  <div class="vertical-section-container centered">
+    <h4>paper-stepper usual</h4>
+    <demo-snippet class="centered-demo">
+      <template>
+       <paper-stepper vertical has-skip-button has-back-button>
+            <paper-step label="step 1"></paper-step>
+            <paper-step label="step 3" editable></paper-step>
+            <paper-step label="step 4"></paper-step>
+          </paper-stepper>
+      </template>
+    </demo-snippet>
+  </div> -->
+  <div class="vertical-section-container _centered">
+    <h4>paper-stepper dom-repeat</h4>
+    <!-- <demo-snippet class="centered-demo"> -->
+      <!-- <template> -->
+        <template id="app" is="dom-bind">
+        <div>
+          
+        <paper-tabs selected="{{selected}}" >
+          <paper-tab>The first tab</paper-tab>
+          <paper-tab>Tab two</paper-tab>
+        </paper-tabs>
+        </div>
+        <iron-pages selected="[[selected]]">
+          <div>
+            <h2>Page 1</h2>
+          </div>
+          <div>
+            <h2>Page 2</h2>
+            <paper-stepper selectable="[stepper], paper-step"  has-skip-button has-back-button>
+            <template stepper is="dom-repeat" id="repeat">
+                <paper-step label="[[item.label]]">[[item.desc]]</paper-step>
+            </template>
+          </paper-stepper>
+          </div>
+        </iron-pages>
+
+      </template>
+      <!-- </template> -->
+    <!-- </demo-snippet> -->
+  </div>
+
+ 
+  <script>
+  window.addEventListener('WebComponentsReady', function() {
+    var app = document.querySelector('#app');
+    
+    app.selected = 0;
+
+    var repeat = document.querySelector('#repeat');
+    
+    var data = [{
+      id: 1,
+      desc: 'description 1',
+      label: 'Title 1'
+   
+    }, {
+      id: '12345',
+      desc: 'description 4',
+      label: 'new items'
+        }, {
+      id: '5',
+      desc: 'description 4',
+      label: 'Hello'
+        }, {
+      id: 6,
+      desc: 'description 4',
+      label: 'Bar'
+    }];
+    repeat.set('items', data);
+  });
+  </script>
+</body>
+
+</html>
