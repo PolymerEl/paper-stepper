@@ -451,7 +451,7 @@ Missing Doc
        * @return {Boolean} True if the step has been saved.
        */
       save: function() {
-        if ((!this.saved || this.editable) && this.validate()) {
+        if ((!this.saved || (this.editable || this.alwaysSelectable) ) && this.validate()) {
           if (!this.saved) {
             this.set('saved',true);
           } else {
